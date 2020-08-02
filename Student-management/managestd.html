@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+    <title>Smart Computer academy- with data my sql</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='smart1.css')}}">
+</head>
+<body bgcolor="pink">
+ <div class="menu">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/addstd">Add Student</a></li>
+            <li><a href="/managestd" class="active">Manage Student</a></li>
+        </ul>
+    </div>
+
+<br>
+
+<table align="center" border="1">
+    <tr>
+        <th colspan="8" bgcolor="#CCCCCC">
+                <h1>Manage student demo</h1>
+            </th>
+    </tr>
+    <tr>
+        <th>Roll No.</th>
+        <th>Student name</th>
+        <th>Address</th>
+        <th>City</th>
+        <th>Fees Rs.</th>
+        <th>Image</th>
+        <th>Modify</th>
+        <th>Delete</th>
+    </tr>
+
+    {% for rec1 in rs1 %}
+    <tr>
+        <td>{{rec1[0]}}</td>
+        <td>{{rec1[1]}}</td>
+        <td>{{rec1[2]}}</td>
+        <td>{{rec1[3]}}</td>
+        <td>{{rec1[4]}}</td>
+
+        <td>
+            <img src="{{url_for('static',filename=rec1[5])}}?m={{ range(1,51) | random }}" height="170" width="170">
+        </td>
+
+        <td><a href='/updatestd?id={{rec1[0]}}' onclick="return confirm('Are You Sure to Update ? ')"> Update</a> </td>
+        <td><a href='/delstd?id={{rec1[0]}}' onclick="return confirm('Are You Sure to Delete ? ')"> Delete </a> </td>
+        </tr>
+        {% endfor %}
+
+
+</table>
+</body>
+</html>
